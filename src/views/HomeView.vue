@@ -8,7 +8,7 @@ const CORDRA_BASE_URL = "https://data.e-rihs.io"
 
 const items = ref([
     {
-        label: 'About'
+        label: 'Start'
     },
     {
         label: 'Registration'
@@ -17,7 +17,7 @@ const items = ref([
         label: 'Organisations'
     },
     {
-        label: 'Persons'
+        label: 'People'
     },
     {
         label: 'Equipment'
@@ -53,13 +53,16 @@ const auth = useAuthStore()
             </template>
         </Card>
 
-        <AboutPanel v-if="activeStep == 0"/>
-        <RegistrationPanel v-else-if="activeStep == 1"/>
-        <OrganisationPanel v-else-if="activeStep == 2 && auth.accessToken"/>
+        <AboutPanel v-if="activeStep === 0"/>
+        <RegistrationPanel v-else-if="activeStep === 1"/>
+        <OrganisationPanel v-else-if="activeStep === 2 && auth.accessToken"/>
+        <PersonPanel v-else-if="activeStep === 3 && auth.accessToken"/>
 
         <div v-else>
             You are not authenticated. Please authenticate to proceed.
         </div>
+
+        <Button v-if="activeStep !== 8" label="Next" @click="activeStep++" class="mt-6"/>
 
     </main>
 </template>

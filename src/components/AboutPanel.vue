@@ -23,7 +23,7 @@ import 'primeicons/primeicons.css'
         </p>
 
         <h3 class="py-6 text-xl font-bold">
-            About the Register-Services tool
+            About the Service Registration tool
         </h3>
 
         <p class="mb-4">
@@ -32,7 +32,7 @@ import 'primeicons/primeicons.css'
         </p>
 
         <p class="mb-4">
-            The Register-Services tool is intended to facilitate the process of registering services and all related documentation within the Knowledge Base. 
+            The Service Registration tool is intended to facilitate the process of registering services and all related documentation within the Knowledge Base. 
             It guides the service providers through the different steps of the process with a user-friendly interface, and polishes off Cordra's roughest edges.
             It is not designed to be a full-fledged service management tool.
         </p>
