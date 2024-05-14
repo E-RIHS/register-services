@@ -15,6 +15,7 @@ import AppMenubar from './components/AppMenubar.vue'
             </nav-->
         </div>
     </header>
+    <MessagePanel />
 
     <RouterView />
 </template>

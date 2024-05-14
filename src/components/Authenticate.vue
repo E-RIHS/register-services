@@ -3,6 +3,7 @@
 import axios from "axios"
 //import { reactive } from 'vue'
 import { useAuthStore } from '@/stores/AuthStore'
+import { useMessageStore } from '@/stores/MessageStore'
 
 const OAUTH2_AUTHORIZATION_URL = "https://orcid.org/oauth/authorize"
 const OAUTH2_CLIENT_ID = "APP-EM6F9ZHFG0CVCENH"
@@ -60,7 +61,20 @@ const requestCordraAccessToken = (idToken) => {
             console.log("access token: " + auth.accessToken)
         })
         .catch(error => {
-            console.error(error)
+            if (error.response.status === 500) {        // 500 Internal Server Error is returned if the ORCID idToken is invalid
+                console.error("Cordra API returned 500 - Internal Server Error; login failed")
+                messages.list.push({
+                    id: Math.floor(Math.random() * 4294967296),
+                    severity: 'error',
+                    detail: 'Failed to verify your ORCID iD! Has your ORCID iD been registered in the Knowledge base (see step 2)?'
+                })
+            } else {
+                console.error("Cordra API returned " + error.response.status + " - " + error.response.data.message)
+                messages.list.push({
+                    severity: 'error',
+                    detail: 'Log in failed! (' + error.response.status + '-' + error.response.data.message + ')'
+                })
+            }
         })
 }
 
@@ -71,7 +85,7 @@ const logout = () => {
                 userId: null,
                 username: null,
                 groupIds: null
-            })
+    })
     // revoke access token
     axios.post(CORDRA_AUTH_REVOKE, { "token": auth.accessToken })
         .then(response => {
@@ -80,6 +94,12 @@ const logout = () => {
         .catch(error => {
             console.error(error)
         })
+    // display message
+    messages.list.push({
+        id: Math.floor(Math.random() * 4294967296),
+        severity: 'info',
+        detail: 'You have been logged out.'
+    })
 }
 
 // use pinia store to store token, userId, username, groupIds
@@ -95,6 +115,22 @@ if (auth.accessToken === null && window.location.hash) {
 
 // remove hash from url, if any
 window.history.pushState("", document.title, window.location.pathname + window.location.search)
+
+// define message store
+// which will allow to create messages if something goes wrong during the authentication process
+
+
+const messages = useMessageStore()
+
+const addMessage = () => {
+    messages.list.push({
+        id: Math.floor(Math.random() * 4294967296),
+        severity: 'info',
+        detail: 'Just a test.'
+    })
+}
+
+
 
 
 </script>

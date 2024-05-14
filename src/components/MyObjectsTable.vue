@@ -7,6 +7,7 @@ import { ref, reactive } from 'vue'
 import 'primeicons/primeicons.css'
 
 import { useAuthStore } from '@/stores/AuthStore'
+import { useMessageStore } from '@/stores/MessageStore'
 
 
 // define component props
@@ -31,7 +32,27 @@ const getMyObjects = (query, token) => {
             myObjects.push(...response.data.results)
         })
         .catch(error => {
-            console.error(error)
+            if (error.response.status === 401) {    // 401 Unauthorized: token expired!
+                console.error("Cordra API returned 401 - Unauthorized; token may be expired?")
+                messages.list.push({
+                    id: Math.floor(Math.random() * 4294967296),
+                    severity: 'warn',
+                    detail: 'Your session has expired. Please log in again.'
+                })
+                // clear token
+                auth.$patch({ 
+                    accessToken: null,
+                    userId: null,
+                    username: null,
+                    groupIds: null
+                })
+            } else {
+                console.error("Cordra API returned " + error.response.status + " - " + error.response.data.message)
+                messages.list.push({
+                    severity: 'error',
+                    detail: 'Failed to fetch data. (' + error.response.status + '-' + error.response.data.message + ')'
+                })
+            }
         })
 }
 
@@ -54,6 +75,10 @@ const refresh = () => {
 }
 
 refresh()
+
+// define message store
+// which will allow to create messages if something goes wrong during the api request
+const messages = useMessageStore()
 
 </script>
 
