@@ -1,10 +1,10 @@
 <script setup>
-import StepperNavigation from '@/components/StepperNavigation.vue'
 import { ref, watch } from "vue"
-
 import { useAuthStore } from '@/stores/AuthStore'
 
+
 const CORDRA_BASE_URL = "https://data.e-rihs.io"
+
 
 const items = ref([
     {
@@ -17,7 +17,7 @@ const items = ref([
         label: 'Organisations'
     },
     {
-        label: 'People'
+        label: 'Persons'
     },
     {
         label: 'Equipment'
@@ -53,7 +53,9 @@ const auth = useAuthStore()
             </template>
         </Card>
 
-        <Organisations v-if="activeStep == 2 && auth.accessToken"/>
+        <AboutPanel v-if="activeStep == 0"/>
+        <RegistrationPanel v-else-if="activeStep == 1"/>
+        <OrganisationPanel v-else-if="activeStep == 2 && auth.accessToken"/>
 
         <div v-else>
             You are not authenticated. Please authenticate to proceed.
