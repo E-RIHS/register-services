@@ -118,8 +118,6 @@ window.history.pushState("", document.title, window.location.pathname + window.l
 
 // define message store
 // which will allow to create messages if something goes wrong during the authentication process
-
-
 const messages = useMessageStore()
 
 const addMessage = () => {
@@ -129,9 +127,6 @@ const addMessage = () => {
         detail: 'Just a test.'
     })
 }
-
-
-
 
 </script>
 
