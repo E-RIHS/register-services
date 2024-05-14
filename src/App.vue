@@ -1,11 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import AppMenubar from './components/AppMenubar.vue'
 
 </script>
 
 <template>
-    
+
     <AppMenubar />
 
     <header>
@@ -19,7 +18,8 @@ import AppMenubar from './components/AppMenubar.vue'
 
     <MessagePanel />
 
-    <!--RouterView /-->
+    <RouterView />
+
 </template>
 
 <style scoped></style>

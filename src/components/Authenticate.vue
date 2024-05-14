@@ -37,7 +37,7 @@ const getOrcidToken = () => {
                 idToken = keyValue[1]
             }
         })
-        console.log("idToken: " + idToken)
+        //console.log("idToken: " + idToken)
     }
     return idToken
 }
@@ -58,7 +58,7 @@ const requestCordraAccessToken = (idToken) => {
                 username: response.data.username,
                 groupIds: response.data.groupIds
             })
-            console.log("access token: " + auth.accessToken)
+            //console.log("access token: " + auth.accessToken)
         })
         .catch(error => {
             if (error.response.status === 500) {        // 500 Internal Server Error is returned if the ORCID idToken is invalid
@@ -92,7 +92,7 @@ const logout = () => {
             console.log("Access token revoked")
         })
         .catch(error => {
-            console.error(error)
+            //console.error(error)  // TODO: cordra always returns an error - wrong API request?
         })
     // display message
     messages.list.push({
@@ -104,7 +104,7 @@ const logout = () => {
 
 // use pinia store to store token, userId, username, groupIds
 const auth = useAuthStore()
-console.log("stored token: " + auth.accessToken)
+//console.log("stored token: " + auth.accessToken)
 
 if (auth.accessToken === null && window.location.hash) {
     let idToken = getOrcidToken()
