@@ -44,19 +44,44 @@ if (userId.value && accessToken.value) {
 </script>
 
 <template>
-    <main>
-    <div class="md:container md:mx-auto">
-        <h3>My organisations</h3>
-        <DataTable :value="myOrgs" tableStyle="min-width: 50rem" stripedRows>
-            <Column field="id" header="Handle">
+    <main class="container m-4 xl:mx-64">
+
+        <h3 
+            class="py-6 text-xl font-bold">
+            My organisations
+        </h3>
+
+        <DataTable 
+            :value="myOrgs" 
+            tableStyle="min-width: 25rem" 
+            stripedRows
+            class="pb-6"
+        >
+            <Column 
+                field="id" 
+                header="Handle"
+            >
                 <template #body="{ data }">
-                    <a :href="`${CORDRA_BASE_URL}/#objects/${data.id}`" target="_blank">{{ data.id }}</a>
+                    <a 
+                        :href="`${CORDRA_BASE_URL}/#objects/${data.id}`" 
+                        target="_blank"
+                    >
+                        {{ data.id }}
+                    </a>
                 </template>
             </Column>
-            <Column field="content.display_name" header="Name"></Column>
+            <Column 
+                field="content.display_name" 
+                header="Name"
+            ></Column>
         </DataTable>
-        <Button :href="`${CORDRA_BASE_URL}/#create/Organisation`" target="_blank">Create new organisation</Button>
-    </div>
+
+        <Button 
+            :href="`${CORDRA_BASE_URL}/#create/Organisation`" 
+            target="_blank"
+        >
+            Create new organisation
+        </Button>
 
     </main>
 </template>

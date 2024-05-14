@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+    darkMode: 'selector',       // this sets the dark mode manually (preventing auto dark mode based on system settings)
     theme: {
         extend: {
             colors: {
