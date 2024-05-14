@@ -61,7 +61,7 @@ const auth = useAuthStore()
         <SoftwarePanel v-else-if="activeStep === 5 && auth.accessToken" />
         <MethodPanel v-else-if="activeStep === 6 && auth.accessToken" />
         <ServicePanel v-else-if="activeStep === 7 && auth.accessToken" />
-        <AllDonePanel v-else-if="activeStep === 8 && auth.accessToken" />
+        <FinalPanel v-else-if="activeStep === 8 && auth.accessToken" />
 
         <div v-else>
             You are not authenticated. Please authenticate to proceed.

@@ -70,6 +70,9 @@ auth.$subscribe((mutation, state) => {
 })
 
 const refresh = () => {
+    // clear existing data
+    myObjects.splice(0)
+    // re-run query
     query.value = `type:"${props.type}" AND (metadata/createdBy:"${auth.userId}" OR acl/writers/_:"${auth.userId}")`
     getMyObjects(query.value, auth.accessToken)
 }
