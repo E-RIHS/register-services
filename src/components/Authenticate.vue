@@ -5,18 +5,18 @@ import axios from "axios"
 import { useAuthStore } from '@/stores/AuthStore'
 import { useMessageStore } from '@/stores/MessageStore'
 
-const OAUTH2_AUTHORIZATION_URL = "https://orcid.org/oauth/authorize"
-const OAUTH2_CLIENT_ID = "APP-EM6F9ZHFG0CVCENH"
-const OAUTH2_REDIRECT_URL = "https://test.e-rihs.io:5173"
+const oauth2AuthorizationUrl = import.meta.env.VITE_OAUTH2_AUTHORIZATION_URL
+const oauth2ClientId = import.meta.env.VITE_OAUTH2_CLIENT_ID
+const oauth2RedirectUrl = import.meta.env.VITE_OAUTH2_REDIRECT_URL
 
-const CORDRA_AUTH_TOKEN = "https://data.e-rihs.io/auth/token"
-const CORDRA_AUTH_REVOKE = "https://data.e-rihs.io/auth/revoke"
+const cordraAuthTokenUrl = import.meta.env.VITE_CORDRA_AUTH_TOKEN_URL
+const cordraAuthRevokeUrl = import.meta.env.VITE_CORDRA_AUTH_REVOKE_URL
 
 
 const openOrcidAuth = () => {
-    const url = OAUTH2_AUTHORIZATION_URL
-        + "?client_id=" + OAUTH2_CLIENT_ID
-        + "&redirect_uri=" + OAUTH2_REDIRECT_URL
+    const url = oauth2AuthorizationUrl
+        + "?client_id=" + oauth2ClientId
+        + "&redirect_uri=" + oauth2RedirectUrl
         + "&response_type=id_token"         // implicit flow
         + "&scope=openid"
         + "&nonce=123456"          // todo: generate and verify random nonces
@@ -50,7 +50,7 @@ const requestCordraAccessToken = (idToken) => {
         "assertion": idToken
     }
     // get access token from Cordra using POST request (Axios) with the ORCID idToken
-    axios.post(CORDRA_AUTH_TOKEN, data)
+    axios.post(cordraAuthTokenUrl, data)
         .then(response => {
             auth.$patch({
                 accessToken: response.data.access_token,
@@ -87,7 +87,7 @@ const logout = () => {
                 groupIds: null
     })
     // revoke access token
-    axios.post(CORDRA_AUTH_REVOKE, { "token": auth.accessToken })
+    axios.post(cordraAuthRevokeUrl, { "token": auth.accessToken })
         .then(response => {
             console.log("Access token revoked")
         })

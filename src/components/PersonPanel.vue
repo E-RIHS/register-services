@@ -1,6 +1,6 @@
 <script setup>
 
-const CORDRA_BASE_URL = "https://data.e-rihs.io"
+const cordraBaseUrl = import.meta.env.VITE_CORDRA_BASE_URL
 
 const columns = [
     { field: "content.full_name", header: "Name" },
@@ -33,7 +33,7 @@ const columns = [
         </p>
 
         <p class="my-6">
-            <a :href="`${CORDRA_BASE_URL}/#create/Person`" target="_blank">
+            <a :href="`${cordraBaseUrl}/#create/Person`" target="_blank">
                 <Button label="Create new person" />
             </a>
         </p>

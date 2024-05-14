@@ -1,6 +1,6 @@
 <script setup>
 
-const CORDRA_BASE_URL = "https://data.e-rihs.io"
+const cordraBaseUrl = import.meta.env.VITE_CORDRA_BASE_URL
 
 const columns = [
     { field: "content.title", header: "Title" },

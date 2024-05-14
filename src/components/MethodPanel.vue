@@ -1,6 +1,6 @@
 <script setup>
 
-const CORDRA_BASE_URL = "https://data.e-rihs.io"
+const cordraBaseUrl = import.meta.env.VITE_CORDRA_BASE_URL
 
 const columns = [
     { field: "content.preferred_label", header: "Title" },
@@ -21,7 +21,7 @@ const columns = [
         </p>
 
         <p class="my-6">
-            <a :href="`${CORDRA_BASE_URL}/#create/Method`" target="_blank">
+            <a :href="`${cordraBaseUrl}/#create/Method`" target="_blank">
                 <Button label="Create new method" />
             </a>
         </p>

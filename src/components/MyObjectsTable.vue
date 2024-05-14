@@ -1,6 +1,6 @@
 <script setup>
 
-const CORDRA_BASE_URL = "https://data.e-rihs.io"
+const cordraBaseUrl = import.meta.env.VITE_CORDRA_BASE_URL
 
 import axios from 'axios'
 import { ref, reactive } from 'vue'
@@ -22,7 +22,7 @@ const myObjects = reactive([])
 
 const getMyObjects = (query, token) => {
     console.log("GET: " + query)
-    const url = `${CORDRA_BASE_URL}/objects?query=${query}`
+    const url = `${cordraBaseUrl}/objects?query=${query}`
     axios.get(url, {
         headers: {
             "Authorization": `Bearer ${token}`
@@ -89,7 +89,7 @@ const messages = useMessageStore()
     <DataTable :value="myObjects" tableStyle="min-width: 25rem" stripedRows class="pb-2">
         <Column field="id" header="Handle">
             <template #body="{ data }">
-                <a :href="`${CORDRA_BASE_URL}/#objects/${data.id}`" target="_blank">
+                <a :href="`${cordraBaseUrl}/#objects/${data.id}`" target="_blank">
                     <span class="pi pi-external-link" style="color: 'rgb(var(--primary-500))'" />
                     {{ data.id }}
                 </a>
@@ -102,9 +102,9 @@ const messages = useMessageStore()
         <span class="pi pi-refresh" />
         Re-run query
     </a>
-    <a :href="`${CORDRA_BASE_URL}/#objects/?query=${query}`" target="_blank" class="mr-4 text-xs">
+    <a :href="`${cordraBaseUrl}/#objects/?query=${query}`" target="_blank" class="mr-4 text-xs">
         <span class="pi pi-external-link" />
-        Show this query directly in {{CORDRA_BASE_URL}}
+        Show this query directly in {{cordraBaseUrl}}
     </a>
 
     <div

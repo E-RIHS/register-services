@@ -3,8 +3,9 @@ import { ref } from "vue"
 import { useAuthStore } from '@/stores/AuthStore'
 
 
-const CORDRA_BASE_URL = "https://data.e-rihs.io"
+const cordraBaseUrl = import.meta.env.VITE_CORDRA_BASE_URL
 
+console.warn(import.meta.env.VITE_OAUTH2_REDIRECT_URL)
 
 const items = ref([
     {
