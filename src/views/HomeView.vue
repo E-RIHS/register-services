@@ -53,12 +53,15 @@ const auth = useAuthStore()
             </template>
         </Card>
 
-        <AboutPanel v-if="activeStep === 0"/>
-        <RegistrationPanel v-else-if="activeStep === 1"/>
-        <OrganisationPanel v-else-if="activeStep === 2 && auth.accessToken"/>
-        <PersonPanel v-else-if="activeStep === 3 && auth.accessToken"/>
-        <EquipmentPanel v-else-if="activeStep === 4 && auth.accessToken"/>
-        <SoftwarePanel v-else-if="activeStep === 5 && auth.accessToken"/>
+        <AboutPanel v-if="activeStep === 0" />
+        <RegistrationPanel v-else-if="activeStep === 1" />
+        <OrganisationPanel v-else-if="activeStep === 2 && auth.accessToken" />
+        <PersonPanel v-else-if="activeStep === 3 && auth.accessToken" />
+        <EquipmentPanel v-else-if="activeStep === 4 && auth.accessToken" />
+        <SoftwarePanel v-else-if="activeStep === 5 && auth.accessToken" />
+        <MethodPanel v-else-if="activeStep === 6 && auth.accessToken" />
+        <ServicePanel v-else-if="activeStep === 7 && auth.accessToken" />
+        <AllDonePanel v-else-if="activeStep === 8 && auth.accessToken" />
 
         <div v-else>
             You are not authenticated. Please authenticate to proceed.
