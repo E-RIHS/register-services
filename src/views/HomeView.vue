@@ -5,8 +5,6 @@ import { useAuthStore } from '@/stores/AuthStore'
 
 const cordraBaseUrl = import.meta.env.VITE_CORDRA_BASE_URL
 
-console.warn(import.meta.env.VITE_OAUTH2_REDIRECT_URL)
-
 const items = ref([
     {
         label: 'Start'
