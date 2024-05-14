@@ -1,7 +1,8 @@
 {
     "name": "kb-frontend",
     "version": "0.0.0",
-    "private": true,
+    "private": false,
+    "homepage": "https://e-rihs.io/register-services",
     "type": "module",
     "scripts": {
         "dev": "vite",
