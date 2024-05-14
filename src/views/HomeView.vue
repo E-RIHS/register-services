@@ -40,7 +40,6 @@ auth.$subscribe((mutation, state) => {
     }
 })
 
-
 </script>
 
 <template>
@@ -76,12 +75,12 @@ auth.$subscribe((mutation, state) => {
             ></Column>
         </DataTable>
 
-        <Button 
-            :href="`${CORDRA_BASE_URL}/#create/Organisation`" 
+        
+        <a  :href="`${CORDRA_BASE_URL}/#create/Organisation`" 
             target="_blank"
         >
-            Create new organisation
-        </Button>
+            <Button label="Create new organisation" />
+        </a>
 
     </main>
 </template>
