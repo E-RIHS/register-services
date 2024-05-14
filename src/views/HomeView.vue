@@ -4,29 +4,20 @@ const CORDRA_BASE_URL = "https://data.e-rihs.io"
 
 import axios from 'axios'
 import { ref, reactive } from 'vue'
+import { useAuthStore } from '@/stores/AuthStore'
 
-// if logged in, get user id and access token from sessionStorage
-// TODO: find a better way to pass these values between components
-const userId = ref(null)
-const accessToken = ref(null)
-
-const storedAuth = sessionStorage.getItem("auth")
-if (storedAuth) {
-    const storedAuthObj = JSON.parse(storedAuth)
-    userId.value = storedAuthObj.userId
-    accessToken.value = storedAuthObj.accessToken
-}
 
 // get "my" organisations from cordra
 const myOrgs = reactive([])
 
-const getMyOrgs = () => {
+const getMyOrgs = (token, userId) => {
+    console.log("fetching organisations for user: " + userId)
     // get organisations created by the user; add bearer token to headers
-    const query = `type:organisation AND (metadata/createdBy:"${userId.value}" OR acl/readers/_:"${userId.value}" OR acl/writers/_:"${userId.value}")`
+    const query = `type:organisation AND (metadata/createdBy:"${userId}" OR acl/writers/_:"${userId}")`
     const url = `${CORDRA_BASE_URL}/objects?query=${query}`
     axios.get(url, {
         headers: {
-            "Authorization": `Bearer ${accessToken.value}`
+            "Authorization": `Bearer ${token}`
         }
     })
         .then(response => {
@@ -37,9 +28,18 @@ const getMyOrgs = () => {
         })
 }
 
-if (userId.value && accessToken.value) {
-    getMyOrgs()
-}
+// subscribe to auth store to get userId and accessToken
+// fetch organisations when these values are set
+const auth = useAuthStore()
+auth.$subscribe((mutation, state) => {
+    console.log("auth state changed: " + state.userId + " " + state.accessToken)
+    if (state.accessToken && state.userId) {
+        getMyOrgs(state.accessToken, state.userId)
+    } else {
+        myOrgs.splice(0)
+    }
+})
+
 
 </script>
 

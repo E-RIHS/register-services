@@ -1,8 +1,8 @@
 <script setup>
 
 import axios from "axios"
-
-import { reactive } from 'vue'
+//import { reactive } from 'vue'
+import { useAuthStore } from '@/stores/AuthStore'
 
 const OAUTH2_AUTHORIZATION_URL = "https://orcid.org/oauth/authorize"
 const OAUTH2_CLIENT_ID = "APP-EM6F9ZHFG0CVCENH"
@@ -23,6 +23,7 @@ const openOrcidAuth = () => {
 }
 
 const getOrcidToken = () => {
+    console.log("getting ORCID idToken from hash")
     let idToken = null
     if (window.location.hash) {
         let hash = window.location.hash.substring(1)
@@ -40,7 +41,8 @@ const getOrcidToken = () => {
     return idToken
 }
 
-const getCordraAccessToken = (idToken) => {
+const requestCordraAccessToken = (idToken) => {
+    console.log("requesting Cordra access token")
     // build POST request (https://www.cordra.org/documentation/api/rest-api.html#create-a-new-access-token)
     const data = {
         "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
@@ -49,14 +51,13 @@ const getCordraAccessToken = (idToken) => {
     // get access token from Cordra using POST request (Axios) with the ORCID idToken
     axios.post(CORDRA_AUTH_TOKEN, data)
         .then(response => {
-            auth.accessToken = response.data.access_token,
-                auth.userId = response.data.userId,
-                auth.username = response.data.username,
-                auth.groupIds = response.data.groupIds
-            console.log("auth: " + auth)
-
-            // store auth in sessionStorage
-            sessionStorage.setItem("auth", JSON.stringify(auth))
+            auth.$patch({
+                accessToken: response.data.access_token,
+                userId: response.data.userId,
+                username: response.data.username,
+                groupIds: response.data.groupIds
+            })
+            console.log("access token: " + auth.accessToken)
         })
         .catch(error => {
             console.error(error)
@@ -64,13 +65,13 @@ const getCordraAccessToken = (idToken) => {
 }
 
 const logout = () => {
-    // remove auth from sessionStorage
-    sessionStorage.removeItem("auth")
-    // remove auth from reactive object
-    auth.accessToken = null
-    auth.userId = null
-    auth.username = null
-    auth.groupIds = null
+    // remove auth from store
+    auth.$patch({
+                accessToken: null,
+                userId: null,
+                username: null,
+                groupIds: null
+            })
     // revoke access token
     axios.post(CORDRA_AUTH_REVOKE, { "token": auth.accessToken })
         .then(response => {
@@ -81,29 +82,20 @@ const logout = () => {
         })
 }
 
-// reactive auth object
-const auth = reactive({
-    accessToken: null,
-    userId: null,
-    username: null,
-    groupIds: null
-})
+// use pinia store to store token, userId, username, groupIds
+const auth = useAuthStore()
+console.log("stored token: " + auth.accessToken)
 
-// try to get auth from sessionStorage or check for ORCID idToken in URL
-const storedAuth = sessionStorage.getItem("auth")
-if (storedAuth) {
-    const storedAuthObj = JSON.parse(storedAuth)
-    auth.accessToken = storedAuthObj.accessToken
-    auth.userId = storedAuthObj.userId
-    auth.username = storedAuthObj.username
-    auth.groupIds = storedAuthObj.groupIds
-} else if (window.location.hash) {
+if (auth.accessToken === null && window.location.hash) {
     let idToken = getOrcidToken()
-    if (idToken) getCordraAccessToken(idToken)
+    if (idToken) {
+        requestCordraAccessToken(idToken)
+    }
 }
 
 // remove hash from url, if any
 window.history.pushState("", document.title, window.location.pathname + window.location.search)
+
 
 </script>
 
