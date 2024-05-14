@@ -134,7 +134,7 @@ const addMessage = () => {
     <Button v-if="!auth.accessToken" @click="openOrcidAuth" label="Log in with ORCID id" raised></Button>
 
     <div v-else>
-        {{ auth.username }}
+        <span class="mr-2 inline-block align-[10px]">{{ auth.username }}</span>
         <Button @click="logout">Logout</Button>
     </div>
 
