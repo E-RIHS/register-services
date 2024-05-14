@@ -26,6 +26,7 @@ export default defineConfig({
     server: {
         https: true, // enable https
     },
+    base: "/register-services/",
     plugins: [
         mkcert(), // create self-signed certificates
         vue(),
