@@ -15,12 +15,12 @@ const props = defineProps({
     columns: Array
 })
 
-
 // get "my" objects from cordra
 const query = ref(null)
 const myObjects = reactive([])
 
 const getMyObjects = (query, token) => {
+    console.log("GET: " + query)
     const url = `${CORDRA_BASE_URL}/objects?query=${query}`
     axios.get(url, {
         headers: {
@@ -48,6 +48,12 @@ auth.$subscribe((mutation, state) => {
     }
 })
 
+const refresh = () => {
+    query.value = `type:"${props.type}" AND (metadata/createdBy:"${auth.userId}" OR acl/writers/_:"${auth.userId}")`
+    getMyObjects(query.value, auth.accessToken)
+}
+
+refresh()
 
 </script>
 
@@ -64,13 +70,19 @@ auth.$subscribe((mutation, state) => {
         <Column v-for="c in props.columns" :key="c.field" :field="c.field" :header="c.header" />
     </DataTable>
 
+    <a href="#" @click="refresh" class="mr-4 text-xs">
+        <span class="pi pi-refresh" />
+        Re-run query
+    </a>
+    <a :href="`${CORDRA_BASE_URL}/#objects/?query=${query}`" target="_blank" class="mr-4 text-xs">
+        <span class="pi pi-external-link" />
+        Show this query directly in {{CORDRA_BASE_URL}}
+    </a>
+
     <div
         v-if="query" 
-        class="pb-6 pl-4 text-xs"
+        class="pb-6 pl-4 "
     >
-        <a :href="`${CORDRA_BASE_URL}/#objects/?query=${query}`" target="_blank">
-            <span class="pi pi-external-link" />
-            Show this query directly in {{CORDRA_BASE_URL}}
-        </a>
+
     </div>
 </template>
