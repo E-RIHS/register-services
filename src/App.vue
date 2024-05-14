@@ -5,9 +5,10 @@ import AppMenubar from './components/AppMenubar.vue'
 </script>
 
 <template>
+    
     <AppMenubar />
-    <header>
 
+    <header>
         <div class="wrapper">
             <!--nav>
                 <RouterLink to="/">Home</RouterLink>
@@ -15,9 +16,10 @@ import AppMenubar from './components/AppMenubar.vue'
             </nav-->
         </div>
     </header>
+
     <MessagePanel />
 
-    <RouterView />
+    <!--RouterView /-->
 </template>
 
 <style scoped></style>
