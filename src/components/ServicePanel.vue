@@ -23,7 +23,7 @@ const columns = [
 
         <p class="my-6">
             <a :href="`${cordraBaseUrl}/#create/Service`" target="_blank">
-                <Button label="Create new service" />
+                <Button label="Create new service" icon="pi pi-file-edit" />
             </a>
         </p>
 

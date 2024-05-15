@@ -99,7 +99,7 @@ const messages = useMessageStore()
 
     <a href="#" @click="refresh" class="mr-4 text-xs">
         <span class="pi pi-refresh" />
-        Re-run query
+        Refresh
     </a>
     <a :href="`${cordraBaseUrl}/#objects/?query=${query}`" target="_blank" class="mr-4 text-xs">
         <span class="pi pi-external-link" />

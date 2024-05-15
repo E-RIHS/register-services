@@ -128,7 +128,7 @@ const messages = useMessageStore()
 
     <div v-else>
         <span class="mr-2 inline-block align-[10px]">{{ auth.username }}</span>
-        <Button @click="logout">Logout</Button>
+        <Button @click="logout" icon="pi pi-sign-out" rounded />
     </div>
 
 </template>

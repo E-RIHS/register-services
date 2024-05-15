@@ -64,7 +64,21 @@ const auth = useAuthStore()
             You are not authenticated. Please authenticate to proceed.
         </div>
 
-        <Button v-if="activeStep !== 8" label="Next" @click="activeStep++" class="mt-6"/>
+        <Button 
+            v-if="activeStep !== 0" 
+            icon="pi pi-chevron-left"
+            label="Previous" 
+            severity="secondary"
+            @click="activeStep--" 
+            class="mt-6"
+        />
+        <Button 
+            v-if="activeStep !== 8" 
+            icon="pi pi-chevron-right"
+            label="Next" 
+            @click="activeStep++" 
+            class="mt-6"
+        />
 
     </main>
 </template>

@@ -45,7 +45,7 @@ const columns = [
 
         <p class="my-6">
             <a :href="`${cordraBaseUrl}/#create/Method`" target="_blank">
-                <Button label="Create new method" />
+                <Button label="Create new method" icon="pi pi-file-edit" />
             </a>
         </p>
 

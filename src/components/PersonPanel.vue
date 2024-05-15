@@ -34,7 +34,7 @@ const columns = [
 
         <p class="my-6">
             <a :href="`${cordraBaseUrl}/#create/Person`" target="_blank">
-                <Button label="Create new person" />
+                <Button label="Create new person" icon="pi pi-file-edit" />
             </a>
         </p>
 
