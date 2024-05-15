@@ -17,12 +17,16 @@ const columns = [
         </h2>
 
         <p class="mb-4">
-            In the this step and the next, you can create descriptions of software and equipment that you use in your service.
+            <InlineMessage 
+                severity="info"
+
+            >
+            For ARCHLAB services, the descriptions of equiments and software are optional. For the other platforms, they are considered mandatory.
+            </InlineMessage>
         </p>
 
         <p class="mb-4">
-            <Tag icon="pi pi-info-circle" severity="info" value="Note" /> 
-            For ARCHLAB services, the descriptions of equiments and software are optional. For the other platforms, they are considered mandatory.
+            In the this step and the next, you can create descriptions of software and equipment that you use in your service.
         </p>
 
         <p  class="mb-4">

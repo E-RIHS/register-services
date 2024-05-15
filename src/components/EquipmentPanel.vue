@@ -17,15 +17,18 @@ const columns = [
         </h2>
 
         <p class="mb-4">
+            <InlineMessage 
+                severity="info"
+            >
+            For ARCHLAB services, the descriptions of equiments and software are optional. For the other platforms, they are considered mandatory.
+            </InlineMessage>
+        </p>
+
+        <p class="mb-4">
             In the this step and the next, you can create descriptions of the equipment(s) that you use in your service.
             An equipment is a physical and particular device in your lab, defined by a name, a manufacturer and a model. 
             It should not be mistaken with the concept of a "technique", which is a more abstract concept that can be 
             implemented by multiple equipments, and which will be selected in the method and service descriptions.
-        </p>
-
-        <p class="mb-4">
-            <Tag icon="pi pi-info-circle" severity="info" value="Note" /> 
-            For ARCHLAB services, the descriptions of equiments and software are optional. For the other platforms, they are considered mandatory.
         </p>
 
         <p  class="mb-4">

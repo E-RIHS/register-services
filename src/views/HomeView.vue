@@ -61,7 +61,12 @@ const auth = useAuthStore()
         <FinalPanel v-else-if="activeStep === 8 && auth.accessToken" />
 
         <div v-else>
-            You are not authenticated. Please authenticate to proceed.
+            <InlineMessage 
+                severity="warn"
+                class="my-6"
+            >
+                You are not authenticated. Please authenticate to proceed.
+            </InlineMessage>
         </div>
 
         <Button 
