@@ -13,7 +13,7 @@ const columns = [
 <template>
 
         <h2 class="py-6 text-4xl font-bold">
-            All done
+            My Services
         </h2>
 
         <p class="mb-4">

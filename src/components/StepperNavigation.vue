@@ -35,7 +35,7 @@ const items = ref([
         label: 'Services'
     },
     {
-        label: 'All done'
+        label: 'Overview'
     }
 ])
 

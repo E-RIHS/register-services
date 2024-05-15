@@ -5,7 +5,7 @@
 <template>
 
     <h2 class="py-6 text-4xl font-bold">
-        Registrater your account for the E-RIHS KnowledgeBase
+        Register your account for the E-RIHS KnowledgeBase
     </h2>
 
     <p class="mb-4">

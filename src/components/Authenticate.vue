@@ -111,6 +111,7 @@ if (auth.accessToken === null && window.location.hash) {
     if (idToken) {
         requestCordraAccessToken(idToken)
     }
+    window.history.pushState("", document.title, window.location.pathname + window.location.search)
 }
 
 // remove hash from url, if any
@@ -119,14 +120,6 @@ window.history.pushState("", document.title, window.location.pathname + window.l
 // define message store
 // which will allow to create messages if something goes wrong during the authentication process
 const messages = useMessageStore()
-
-const addMessage = () => {
-    messages.list.push({
-        id: Math.floor(Math.random() * 4294967296),
-        severity: 'info',
-        detail: 'Just a test.'
-    })
-}
 
 </script>
 
