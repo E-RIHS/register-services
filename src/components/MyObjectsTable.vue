@@ -76,7 +76,21 @@ const refresh = () => {
     getMyObjects(query.value, auth.accessToken)
 }
 
-//refresh()
+onMounted(() => {
+    // set interval to check if the tab has regained focus
+    let trigger = true      // boolean to trigger a refresh
+    setInterval(() => {
+        if (document.hasFocus()) {
+            if (trigger) {
+                trigger = false
+                refresh()
+            } else {
+                trigger = true
+            }
+        }
+        refresh()
+    }, 3000)
+})
 
 // define message store
 // which will allow to create messages if something goes wrong during the api request
@@ -90,7 +104,6 @@ const messages = useMessageStore()
         tableStyle="min-width: 25rem" 
         stripedRows 
         class="pb-2"
-        @focus="refresh"
     >
         <Column field="id" header="Handle">
             <template #body="{ data }">
