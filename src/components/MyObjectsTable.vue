@@ -115,14 +115,16 @@ const messages = useMessageStore()
         <Column v-for="c in props.columns" :key="c.field" :field="c.field" :header="c.header" />
     </DataTable>
 
-    <a href="#" @click="refresh" class="mr-4 text-xs">
-        <span class="pi pi-refresh" />
-        Refresh
-    </a>
-    <a :href="`${cordraBaseUrl}/#objects/?query=${query}`" target="_blank" class="mr-4 text-xs">
-        <span class="pi pi-external-link" />
-        Show this query directly in {{cordraBaseUrl}}
-    </a>
+    <p>
+        <a href="#" @click="refresh" class="mr-4 text-xs">
+            <span class="pi pi-refresh" />
+            Refresh
+        </a>
+        <a :href="`${cordraBaseUrl}/#objects/?query=${query}`" target="_blank" class="mr-4 text-xs">
+            <span class="pi pi-external-link" />
+            Show this query directly in {{cordraBaseUrl}}
+        </a>
+    </p>
 
     <div
         v-if="query" 
