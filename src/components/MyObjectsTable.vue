@@ -77,6 +77,9 @@ const refresh = () => {
 }
 
 onMounted(() => {
+    // refresh data when component is mounted
+    refresh()
+
     // set interval to check if the tab has regained focus
     let trigger = true      // boolean to trigger a refresh
     setInterval(() => {
@@ -84,9 +87,9 @@ onMounted(() => {
             if (trigger) {
                 trigger = false
                 refresh()
-            } else {
-                trigger = true
             }
+        } else {
+            trigger = true
         }
     }, 3000)
 })
