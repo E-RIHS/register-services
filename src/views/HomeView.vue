@@ -3,8 +3,6 @@ import { ref } from "vue"
 import { useAuthStore } from '@/stores/AuthStore'
 
 
-const cordraBaseUrl = import.meta.env.VITE_CORDRA_BASE_URL
-
 const items = ref([
     {
         label: 'Start'
@@ -19,10 +17,10 @@ const items = ref([
         label: 'People'
     },
     {
-        label: 'Equipment'
+        label: 'Software'
     },
     {
-        label: 'Software'
+        label: 'Equipment'
     },
     {
         label: 'Method'
@@ -31,7 +29,7 @@ const items = ref([
         label: 'Services'
     },
     {
-        label: 'All done'
+        label: 'Overview'
     }
 ])
 
@@ -56,8 +54,8 @@ const auth = useAuthStore()
         <RegistrationPanel v-else-if="activeStep === 1" />
         <OrganisationPanel v-else-if="activeStep === 2 && auth.accessToken" />
         <PersonPanel v-else-if="activeStep === 3 && auth.accessToken" />
-        <EquipmentPanel v-else-if="activeStep === 4 && auth.accessToken" />
-        <SoftwarePanel v-else-if="activeStep === 5 && auth.accessToken" />
+        <SoftwarePanel v-else-if="activeStep === 4 && auth.accessToken" />
+        <EquipmentPanel v-else-if="activeStep === 5 && auth.accessToken" />
         <MethodPanel v-else-if="activeStep === 6 && auth.accessToken" />
         <ServicePanel v-else-if="activeStep === 7 && auth.accessToken" />
         <FinalPanel v-else-if="activeStep === 8 && auth.accessToken" />
