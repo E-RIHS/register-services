@@ -88,7 +88,6 @@ onMounted(() => {
                 trigger = true
             }
         }
-        refresh()
     }, 3000)
 })
 
