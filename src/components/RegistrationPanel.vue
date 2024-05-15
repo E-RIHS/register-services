@@ -1,5 +1,10 @@
 <script setup>
 
+import { useAuthStore } from '@/stores/AuthStore'
+
+// subscribe to auth store to see if a user is logged in (and thus has already registered)
+const auth = useAuthStore()
+
 </script>
 
 <template>
@@ -7,6 +12,14 @@
     <h2 class="py-6 text-4xl font-bold">
         Register your account for the E-RIHS KnowledgeBase
     </h2>
+
+    <InlineMessage 
+        v-if="auth.userId"
+        severity="success"
+        class="mb-6"
+    >
+        You are already registered and logged in.
+    </InlineMessage>
 
     <p class="mb-4">
         Logging into this administration system, to directly add, modify and delete digital objects, is achieved using an ORCID iD.
