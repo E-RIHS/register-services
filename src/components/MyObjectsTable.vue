@@ -77,13 +77,10 @@ const refresh = () => {
 }
 
 onMounted(() => {
-    // refresh data when component is mounted
-    refresh()
-
     // set interval to check if the tab has regained focus
     let trigger = true      // boolean to trigger a refresh
     setInterval(() => {
-        if (document.hasFocus()) {
+        if (window.hasFocus()) {
             if (trigger) {
                 trigger = false
                 refresh()
@@ -91,7 +88,7 @@ onMounted(() => {
         } else {
             trigger = true
         }
-    }, 3000)
+    }, 1000)
 })
 
 // define message store
