@@ -70,14 +70,14 @@ const auth = useAuthStore()
             label="Previous" 
             severity="secondary"
             @click="activeStep--" 
-            class="mt-6"
+            class="mt-6 mr-2"
         />
         <Button 
             v-if="activeStep !== 8" 
             icon="pi pi-chevron-right"
             label="Next" 
             @click="activeStep++" 
-            class="mt-6"
+            class="mt-6 mr-2"
         />
 
     </main>
