@@ -4,7 +4,6 @@ const cordraBaseUrl = import.meta.env.VITE_CORDRA_BASE_URL
 
 import axios from 'axios'
 import { ref, reactive } from 'vue'
-import 'primeicons/primeicons.css'
 
 import { useAuthStore } from '@/stores/AuthStore'
 import { useMessageStore } from '@/stores/MessageStore'

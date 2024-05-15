@@ -17,11 +17,24 @@ const columns = [
         </h2>
 
         <p class="mb-4">
-            ...
+            In the this step and the next, you can create descriptions of software and equipment that you use in your service.
+        </p>
+
+        <p class="mb-4">
+            <Tag icon="pi pi-info-circle" severity="info" value="Note" /> 
+            For ARCHLAB services, the descriptions of equiments and software are optional. For the other platforms, they are considered mandatory.
         </p>
 
         <p  class="mb-4">
-            Note: for ARCHLAB services, the descriptions of equiments and software are optional.
+            Software and equipment are collectively called "tools" and can be linked to each other: a tool can consist of disctinctive components 
+            that can itself be either other equipment or software. As an example, a scanning electron microscope is an equipment that 
+            can be equiped with multiple detectors. Each detector, especially those from a different manufacturer can be considered 
+            as a separate equipment. Both the microscope and the detectors can be linked to software that is used to control them, 
+            and your lab might combine these proprietary software with open-source software for data analysis. Whether you want 
+            to describe the microscope, the detectors and the software individually or as one single tool, depends on the tool itself, 
+            the way it is being used within the service and your preference. If you choose to describe them individually, the best 
+            approach is start with the individual software and equipment descriptions, and building up towards the combined/main tool 
+            description.
         </p>
 
         <p class="my-6">

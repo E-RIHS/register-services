@@ -17,7 +17,8 @@ const columns = [
         </h2>
 
         <p class="mb-4">
-            ...
+            In this step you can describe the services that you offer. A service is a combination of methods, equipment and software that you offer to the users to answer specific research questions.
+            Services ar the top level entities that will be listed in the catalogue(s) of service.
         </p>
 
         <p class="my-6">
