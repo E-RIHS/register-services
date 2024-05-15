@@ -1,22 +1,21 @@
 <script setup>
 
 import axios from "axios"
-//import { reactive } from 'vue'
+import { onMounted } from 'vue'
 import { useAuthStore } from '@/stores/AuthStore'
 import { useMessageStore } from '@/stores/MessageStore'
 
 const oauth2AuthorizationUrl = import.meta.env.VITE_OAUTH2_AUTHORIZATION_URL
 const oauth2ClientId = import.meta.env.VITE_OAUTH2_CLIENT_ID
-const oauth2RedirectUrl = import.meta.env.VITE_OAUTH2_REDIRECT_URL
+//const oauth2RedirectUrl = import.meta.env.VITE_OAUTH2_REDIRECT_URL // use window.location.href
 
 const cordraAuthTokenUrl = import.meta.env.VITE_CORDRA_AUTH_TOKEN_URL
 const cordraAuthRevokeUrl = import.meta.env.VITE_CORDRA_AUTH_REVOKE_URL
 
-
 const openOrcidAuth = () => {
     const url = oauth2AuthorizationUrl
         + "?client_id=" + oauth2ClientId
-        + "&redirect_uri=" + oauth2RedirectUrl
+        + "&redirect_uri=" + window.location.href.split('#')[0]
         + "&response_type=id_token"         // implicit flow
         + "&scope=openid"
         + "&nonce=123456"          // todo: generate and verify random nonces
@@ -104,18 +103,18 @@ const logout = () => {
 
 // use pinia store to store token, userId, username, groupIds
 const auth = useAuthStore()
-//console.log("stored token: " + auth.accessToken)
 
-if (auth.accessToken === null && window.location.hash) {
-    let idToken = getOrcidToken()
-    if (idToken) {
-        requestCordraAccessToken(idToken)
+onMounted(() => {
+    if (window.location.hash) {
+        let idToken = getOrcidToken()
+        if (idToken) {
+            requestCordraAccessToken(idToken)
+        }
     }
-    window.history.pushState("", document.title, window.location.pathname + window.location.search)
-}
 
-// remove hash from url, if any
-window.history.pushState("", document.title, window.location.pathname + window.location.search)
+    // remove hash from url, if any
+    window.history.pushState("", document.title, window.location.href.split('#')[0])
+})
 
 // define message store
 // which will allow to create messages if something goes wrong during the authentication process
