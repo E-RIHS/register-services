@@ -76,7 +76,7 @@ const refresh = () => {
     getMyObjects(query.value, auth.accessToken)
 }
 
-refresh()
+//refresh()
 
 // define message store
 // which will allow to create messages if something goes wrong during the api request
@@ -85,7 +85,13 @@ const messages = useMessageStore()
 </script>
 
 <template>
-    <DataTable :value="myObjects" tableStyle="min-width: 25rem" stripedRows class="pb-2">
+    <DataTable 
+        :value="myObjects" 
+        tableStyle="min-width: 25rem" 
+        stripedRows 
+        class="pb-2"
+        @focus="refresh"
+    >
         <Column field="id" header="Handle">
             <template #body="{ data }">
                 <a :href="`${cordraBaseUrl}/#objects/${data.id}`" target="_blank">
