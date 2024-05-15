@@ -80,7 +80,7 @@ onMounted(() => {
     // set interval to check if the tab has regained focus
     let trigger = true      // boolean to trigger a refresh
     setInterval(() => {
-        if (window.hasFocus()) {
+        if (document.hasFocus()) {
             if (trigger) {
                 trigger = false
                 refresh()
@@ -88,7 +88,7 @@ onMounted(() => {
         } else {
             trigger = true
         }
-    }, 1000)
+    }, 500)
 })
 
 // define message store
