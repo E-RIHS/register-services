@@ -1,11 +1,34 @@
 <script setup>
 
+import { ref } from "vue"
+
 const cordraBaseUrl = import.meta.env.VITE_CORDRA_BASE_URL
 
 const columns = [
     { field: "content.acronym", header: "Acronym" },
     { field: "content.name", header: "Name" },
 ]
+
+const showDialog = ref(false)
+const infoButton = ref(false)
+
+const toggleDialog = (info) => {
+    showDialog.value = true
+    infoButton.value = info
+}
+
+// check if the dialog has been shown before in this session
+const shownDialogBefore = ref(true)
+if (sessionStorage.getItem('shownDialogBefore') === null) {
+    shownDialogBefore.value = false
+}
+
+const openLink = () => {
+    shownDialogBefore.value = true
+    sessionStorage.setItem('shownDialogBefore', 'true')
+    showDialog.value = false
+    window.open(`${cordraBaseUrl}/#create/Organisation`, '_blank')
+}
 
 </script>
 
@@ -32,9 +55,26 @@ const columns = [
         </p>
 
         <p class="my-6">
-            <a :href="`${cordraBaseUrl}/#create/Organisation`" target="_blank">
-                <Button label="Create new organisation" icon="pi pi-file-edit" />
-            </a>
+            <Button 
+                v-if="shownDialogBefore"
+                label="Create new organisation" 
+                icon="pi pi-file-edit" 
+                @click="openLink"
+            />
+            <Button 
+                v-else
+                label="Create new organisation" 
+                icon="pi pi-file-edit" 
+                @click="toggleDialog(false)"
+            />
+            <Button 
+                v-if="shownDialogBefore"
+                icon="pi pi-info-circle" 
+                aria-label="Filter" 
+                severity="secondary" 
+                class="ml-2" 
+                @click="toggleDialog(true)" 
+            />
         </p>
 
         <h3 class="py-6 text-xl font-bold">
@@ -46,5 +86,18 @@ const columns = [
         </p>
 
         <MyObjectsTable type="Organisation" :columns="columns" />
+
+        <Dialog 
+            v-model:visible="showDialog" 
+            modal 
+            header="The E-RIHS Knowledge Base" 
+            :style="{ width: '35rem' }"
+        >
+            <CordraDialogContent />
+
+            <p class="my-6" v-if="!infoButton">
+                <Button label="Create new organisation" icon="pi pi-file-edit" @click="openLink"/>
+            </p>
+        </Dialog>
 
 </template>

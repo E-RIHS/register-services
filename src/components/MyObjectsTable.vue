@@ -126,10 +126,4 @@ const messages = useMessageStore()
         </a>
     </p>
 
-    <div
-        v-if="query" 
-        class="pb-6 pl-4 "
-    >
-
-    </div>
 </template>
