@@ -38,6 +38,7 @@ const items = ref([
 // active step
 const activeStep = ref(0)
 
+// update route on activeStep change and vice versa
 const route = useRoute()
 
 onMounted(() => {
@@ -48,15 +49,9 @@ onMounted(() => {
 })
 
 watch(() => activeStep.value, (newStep, oldStep) => {
-    console.warn('activeStep changed from', oldStep, 'to', newStep)
     // update route
     window.history.pushState({}, '', `${import.meta.env.VITE_OAUTH2_REDIRECT_URL}/${newStep + 1}`)
 })
-
-// watch(() => route.params.id, (newId, oldId) => {
-//     console.warn('route.params.id changed from', oldId, 'to', newId)
-//     activeStep.value = parseInt(newId -1)
-// })
 
 // check if authenticated (to be able to hide steps 2-8)
 const auth = useAuthStore()
