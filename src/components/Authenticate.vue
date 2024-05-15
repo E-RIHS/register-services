@@ -5,17 +5,26 @@ import { onMounted } from 'vue'
 import { useAuthStore } from '@/stores/AuthStore'
 import { useMessageStore } from '@/stores/MessageStore'
 
+const appBaseUrl = import.meta.env.VITE_APP_BASE_URL
+
 const oauth2AuthorizationUrl = import.meta.env.VITE_OAUTH2_AUTHORIZATION_URL
 const oauth2ClientId = import.meta.env.VITE_OAUTH2_CLIENT_ID
-//const oauth2RedirectUrl = import.meta.env.VITE_OAUTH2_REDIRECT_URL // use window.location.href
 
 const cordraAuthTokenUrl = import.meta.env.VITE_CORDRA_AUTH_TOKEN_URL
 const cordraAuthRevokeUrl = import.meta.env.VITE_CORDRA_AUTH_REVOKE_URL
 
 const openOrcidAuth = () => {
+    // github pages workaround: /{step} gives a 404, so convert it to /?step={step}
+    let step = window.location.href.split('#')[0]
+    step = step.split('?')[0]
+    step = step.replace(appBaseUrl, "")
+    step = step.replace("/", "")
+    const redirectUrl = appBaseUrl + "/?step=" + step
+
+    // build ORCID OAuth2 authorization URL and open it
     const url = oauth2AuthorizationUrl
         + "?client_id=" + oauth2ClientId
-        + "&redirect_uri=" + window.location.href.split('#')[0]
+        + "&redirect_uri=" + redirectUrl
         + "&response_type=id_token"         // implicit flow
         + "&scope=openid"
         + "&nonce=123456"          // todo: generate and verify random nonces

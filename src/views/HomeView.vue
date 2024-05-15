@@ -44,13 +44,20 @@ const route = useRoute()
 onMounted(() => {
     if (route.params.id)
         activeStep.value = parseInt(route.params.id) - 1
-    // remove hash from url, if any
-    window.history.pushState("", document.title, window.location.href.split('#')[0])
+    // check for ?step= query parameter
+    const step = route.query.step
+    if (step) {
+        activeStep.value = parseInt(step) - 1
+    }
+    // remove hash and query parameters from url, if any
+    let url = window.location.href.split('#')[0]
+    if (url.includes('?')) url = url.split('?')[0]
+    window.history.pushState("", document.title, url)
 })
 
 watch(() => activeStep.value, (newStep, oldStep) => {
     // update route
-    window.history.pushState({}, '', `${import.meta.env.VITE_OAUTH2_REDIRECT_URL}/${newStep + 1}`)
+    window.history.pushState({}, '', `${import.meta.env.VITE_APP_BASE_URL}/${newStep + 1}`)
 })
 
 // check if authenticated (to be able to hide steps 2-8)
