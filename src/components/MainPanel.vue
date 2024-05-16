@@ -64,7 +64,7 @@ const auth = useAuthStore()
 <template>
     <main class="container m-4 xl:mx-64">
 
-        <Panel class="my-6">
+        <Panel class="mb-6">
             <Steps :model="items" v-model:activeStep="activeStep" :readonly="false" />
         </Panel>
 

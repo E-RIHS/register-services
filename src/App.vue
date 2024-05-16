@@ -3,10 +3,11 @@
 </script>
 
 <template>
-
-    <AppMenubar />
-
-    <MainPanel />
+    <div class="flex flex-col h-screen">
+        <AppMenubar />
+        <MainPanel class="flex-grow" />
+        <Footer />
+    </div>
 
 </template>
 
