@@ -1,5 +1,4 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
 
 </script>
 
@@ -7,18 +6,9 @@ import { RouterLink, RouterView } from 'vue-router'
 
     <AppMenubar />
 
-    <header>
-        <div class="wrapper">
-            <!--nav>
-                <RouterLink to="/">Home</RouterLink>
-                <RouterLink to="/about">About</RouterLink>
-            </nav-->
-        </div>
-    </header>
-
     <MessagePanel />
 
-    <RouterView />
+    <MainPanel />
 
 </template>
 

@@ -1,6 +1,5 @@
 <script setup>
 import { ref, watch, onMounted } from "vue"
-import { useRoute } from "vue-router"
 
 import { useAuthStore } from '@/stores/AuthStore'
 
@@ -38,26 +37,22 @@ const items = ref([
 // active step
 const activeStep = ref(0)
 
-// update route on activeStep change and vice versa
-const route = useRoute()
-
 onMounted(() => {
-    if (route.params.id)
-        activeStep.value = parseInt(route.params.id) - 1
-    // check for ?step= query parameter
-    const step = route.query.step
+    // check for step query parameter
+    let queryParams = window.location.search
+    queryParams = queryParams.split('&')
+    let step = queryParams.find(param => param.includes('step='))
     if (step) {
-        activeStep.value = parseInt(step) - 1
+        activeStep.value = parseInt(step.split('=')[1]) - 1
     }
-    // remove hash and query parameters from url, if any
+    // remove hash parameters from url, if any
     let url = window.location.href.split('#')[0]
-    if (url.includes('?')) url = url.split('?')[0]
     window.history.pushState("", document.title, url)
 })
 
 watch(() => activeStep.value, (newStep, oldStep) => {
-    // update route
-    window.history.pushState({}, '', `${import.meta.env.VITE_APP_BASE_URL}/${newStep + 1}`)
+    // update step query parameter
+    window.history.pushState({}, '', `${import.meta.env.VITE_APP_BASE_URL}/?step=${newStep + 1}`)
 })
 
 // check if authenticated (to be able to hide steps 2-8)
