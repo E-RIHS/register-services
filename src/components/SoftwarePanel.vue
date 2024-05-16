@@ -42,7 +42,6 @@ const openLink = () => {
         <p class="mb-4">
             <InlineMessage 
                 severity="info"
-
             >
             For ARCHLAB services, the descriptions of equiments and software are optional. For the other platforms, they are considered mandatory.
             </InlineMessage>

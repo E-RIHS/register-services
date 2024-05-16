@@ -23,8 +23,12 @@ const columns = [
 
         <MyObjectsTable type="Service" :columns="columns" />
 
-        <p class="mb-4">
-            Note: in the future we might add support for creating national calagolues of services, or even institutional or personal catalogues. This can already be done within the E-RIHS Knowledge Base.
+        <p class="mb-4 mt-8">
+            <InlineMessage 
+                severity="info"
+            >
+            In the future we might add support for creating national calagolues of services, or even institutional or personal catalogues. This can already be done within the E-RIHS Knowledge Base.
+            </InlineMessage>
         </p>
 
 </template>
