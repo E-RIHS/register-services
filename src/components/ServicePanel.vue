@@ -67,15 +67,17 @@ const openLink = () => {
             />
         </p>
 
-        <h3 class="py-6 text-xl font-bold">
-            My services
-        </h3>
-
-        <p  class="mb-4">
-            Below is a list of services that are either created by you, or to which you have been granted write-access.
-        </p>
-
-        <MyObjectsTable type="Service" :columns="columns" />
+        <TabView>
+            <TabPanel header="My services">
+                <p class="mb-4 mt-2">
+                    Below is a list of services that are either created by you, or to which you have been granted write-access.
+                </p>
+                <MyObjectsTable type="Service" :columns="columns" />
+            </TabPanel>
+            <TabPanel header="Search services">
+                <MyObjectsTable type="Service" :columns="columns" search-mode />
+            </TabPanel>
+        </TabView>
 
         <Dialog 
             v-model:visible="showDialog" 

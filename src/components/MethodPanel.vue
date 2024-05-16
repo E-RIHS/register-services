@@ -31,7 +31,6 @@ const openLink = () => {
     window.open(`${cordraBaseUrl}/#create/Method`, '_blank')
 }
 
-
 </script>
 
 <template>
@@ -90,15 +89,17 @@ const openLink = () => {
             />
         </p>
 
-        <h3 class="py-6 text-xl font-bold">
-            My methods
-        </h3>
-
-        <p  class="mb-4">
-            Below is a list of methods that are either created by you, or to which you have been granted write-access.
-        </p>
-
-        <MyObjectsTable type="Method" :columns="columns" />
+        <TabView>
+            <TabPanel header="My methods">
+                <p class="mb-4 mt-2">
+                    Below is a list of methods that are either created by you, or to which you have been granted write-access.
+                </p>
+                <MyObjectsTable type="Method" :columns="columns" />
+            </TabPanel>
+            <TabPanel header="Search methods">
+                <MyObjectsTable type="Method" :columns="columns" search-mode />
+            </TabPanel>
+        </TabView>
 
         <Dialog 
             v-model:visible="showDialog" 

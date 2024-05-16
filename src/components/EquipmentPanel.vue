@@ -84,15 +84,17 @@ const openLink = () => {
             />
         </p>
 
-        <h3 class="py-6 text-xl font-bold">
-            My equipment
-        </h3>
-
-        <p  class="mb-4">
-            Below is a list of equipment descriptions that are either created by you, or to which you have been granted write-access.
-        </p>
-
-        <MyObjectsTable type="Equipment" :columns="columns" />
+        <TabView>
+            <TabPanel header="My equipment">
+                <p class="mb-4 mt-2">
+                    Below is a list of equipment descriptions that are either created by you, or to which you have been granted write-access.
+                </p>
+                <MyObjectsTable type="Equipment" :columns="columns" />
+            </TabPanel>
+            <TabPanel header="Search equipment">
+                <MyObjectsTable type="Equipment" :columns="columns" search-mode />
+            </TabPanel>
+        </TabView>
 
         <Dialog 
             v-model:visible="showDialog" 

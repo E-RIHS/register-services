@@ -78,15 +78,17 @@ const openLink = () => {
             />
         </p>
 
-        <h3 class="py-6 text-xl font-bold">
-            My team
-        </h3>
-
-        <p  class="mb-4">
-            Below is a list of people that are either defined in the system by you, or to which you have been granted write-access.
-        </p>
-
-        <MyObjectsTable type="Person" :columns="columns" />
+        <TabView>
+            <TabPanel header="My team">
+                <p class="mb-4 mt-2">
+                    Below is a list of people that are either defined in the system by you, or to which you have been granted write-access.
+                </p>
+                <MyObjectsTable type="Person" :columns="columns" />
+            </TabPanel>
+            <TabPanel header="Search people">
+                <MyObjectsTable type="Person" :columns="columns" search-mode />
+            </TabPanel>
+        </TabView>
 
         <Dialog 
             v-model:visible="showDialog" 
