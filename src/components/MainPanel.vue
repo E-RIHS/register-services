@@ -64,11 +64,9 @@ const auth = useAuthStore()
 <template>
     <main class="container m-4 xl:mx-64">
 
-        <Card class="my-6">
-            <template #content>
-                <Steps :model="items" v-model:activeStep="activeStep" :readonly="false" />
-            </template>
-        </Card>
+        <Panel class="my-6">
+            <Steps :model="items" v-model:activeStep="activeStep" :readonly="false" />
+        </Panel>
 
         <AboutPanel v-if="activeStep === 0" />
         <RegistrationPanel v-else-if="activeStep === 1" />
