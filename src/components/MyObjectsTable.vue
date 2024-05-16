@@ -4,10 +4,14 @@ const cordraBaseUrl = import.meta.env.VITE_CORDRA_BASE_URL
 
 import axios from 'axios'
 import { ref, reactive, onMounted } from 'vue'
+import { useToast} from 'primevue/usetoast'
+import Toast from 'primevue/toast'
 
 import { useAuthStore } from '@/stores/AuthStore'
-import { useMessageStore } from '@/stores/MessageStore'
 
+
+// status messages
+const toast = useToast()
 
 // define component props
 const props = defineProps({
@@ -33,10 +37,11 @@ const getObjects = (query, token) => {
         .catch(error => {
             if (error.response.status === 401) {    // 401 Unauthorized: token expired!
                 console.error("Cordra API returned 401 - Unauthorized; token may be expired?")
-                messages.list.push({
-                    id: Math.floor(Math.random() * 4294967296),
-                    severity: 'warn',
-                    detail: 'Your session has expired. Please log in again.'
+                toast.add({ 
+                    severity: 'warn', 
+                    summary: 'Connection error.', 
+                    detail: 'Your session has expired. Please log in again.',
+                    life: 3000 
                 })
                 // clear token
                 auth.$patch({ 
@@ -47,9 +52,11 @@ const getObjects = (query, token) => {
                 })
             } else {
                 console.error("Cordra API returned " + error.response.status + " - " + error.response.data.message)
-                messages.list.push({
-                    severity: 'error',
-                    detail: 'Failed to fetch data. (' + error.response.status + '-' + error.response.data.message + ')'
+                toast.add({ 
+                    severity: 'error', 
+                    summary: 'Connection error.', 
+                    detail: 'Failed to fetch data. (' + error.response.status + '-' + error.response.data.message + ')',
+                    life: 3000 
                 })
             }
         })
@@ -98,10 +105,6 @@ onMounted(() => {
         }
     }, 500)
 })
-
-// define message store
-// which will allow to create messages if something goes wrong during the api request
-const messages = useMessageStore()
 
 </script>
 

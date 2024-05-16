@@ -6,8 +6,6 @@
 
     <AppMenubar />
 
-    <MessagePanel />
-
     <MainPanel />
 
 </template>

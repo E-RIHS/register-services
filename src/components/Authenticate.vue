@@ -2,8 +2,10 @@
 
 import axios from "axios"
 import { onMounted } from 'vue'
+import { useToast} from 'primevue/usetoast'
+import Toast from 'primevue/toast'
 import { useAuthStore } from '@/stores/AuthStore'
-import { useMessageStore } from '@/stores/MessageStore'
+
 
 const appBaseUrl = import.meta.env.VITE_APP_BASE_URL
 
@@ -12,6 +14,9 @@ const oauth2ClientId = import.meta.env.VITE_OAUTH2_CLIENT_ID
 
 const cordraAuthTokenUrl = import.meta.env.VITE_CORDRA_AUTH_TOKEN_URL
 const cordraAuthRevokeUrl = import.meta.env.VITE_CORDRA_AUTH_REVOKE_URL
+
+// status messages
+const toast = useToast()
 
 const openOrcidAuth = () => {
     // build ORCID OAuth2 authorization URL and open it
@@ -59,21 +64,30 @@ const requestCordraAccessToken = (idToken) => {
                 username: response.data.username,
                 groupIds: response.data.groupIds
             })
+            toast.add({ 
+                severity: 'success', 
+                summary: 'Authentication success.', 
+                detail: 'You have been successfully logged in.',
+                life: 3000 
+            })
             //console.log("access token: " + auth.accessToken)
         })
         .catch(error => {
             if (error.response.status === 500) {        // 500 Internal Server Error is returned if the ORCID idToken is invalid
                 console.error("Cordra API returned 500 - Internal Server Error; login failed")
-                messages.list.push({
-                    id: Math.floor(Math.random() * 4294967296),
-                    severity: 'error',
-                    detail: 'Failed to verify your ORCID iD! Has your ORCID iD been registered in the Knowledge base (see step 2)?'
+                toast.add({ 
+                    severity: 'error', 
+                    summary: 'Authentication failure.', 
+                    detail: 'Failed to verify your ORCID iD! Has your ORCID iD been registered in the Knowledge base (see step 2)?',
+                    life: 3000 
                 })
             } else {
                 console.error("Cordra API returned " + error.response.status + " - " + error.response.data.message)
-                messages.list.push({
-                    severity: 'error',
-                    detail: 'Log in failed! (' + error.response.status + '-' + error.response.data.message + ')'
+                toast.add({ 
+                    severity: 'error', 
+                    summary: 'Authentication failure.', 
+                    detail: 'Log in failed! (' + error.response.status + '-' + error.response.data.message + ')',
+                    life: 3000 
                 })
             }
         })
@@ -96,10 +110,11 @@ const logout = () => {
             //console.error(error)  // TODO: cordra always returns an error - wrong API request?
         })
     // display message
-    messages.list.push({
-        id: Math.floor(Math.random() * 4294967296),
-        severity: 'info',
-        detail: 'You have been logged out.'
+    toast.add({ 
+        severity: 'info', 
+        summary: 'Logout.', 
+        detail: 'You have been logged out.',
+        life: 3000 
     })
 }
 
@@ -118,10 +133,6 @@ onMounted(() => {
     //window.history.pushState("", document.title, window.location.href.split('#')[0])
 })
 
-// define message store
-// which will allow to create messages if something goes wrong during the authentication process
-const messages = useMessageStore()
-
 </script>
 
 <template>
@@ -131,5 +142,7 @@ const messages = useMessageStore()
         <span class="mr-2 inline-block align-[10px]">{{ auth.username }}</span>
         <Button @click="logout" icon="pi pi-sign-out" rounded />
     </div>
+
+    <Toast />
 
 </template>
