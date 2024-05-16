@@ -12,14 +12,14 @@ import { useMessageStore } from '@/stores/MessageStore'
 // define component props
 const props = defineProps({
     type: String,
-    columns: Array
+    columns: Array,
+    searchMode: Boolean
 })
 
 // get "my" objects from cordra
-const query = ref(null)
-const myObjects = reactive([])
+const objects = reactive([])
 
-const getMyObjects = (query, token) => {
+const getObjects = (query, token) => {
     console.log("GET: " + query)
     const url = `${cordraBaseUrl}/objects?query=${query}`
     axios.get(url, {
@@ -28,7 +28,7 @@ const getMyObjects = (query, token) => {
         }
     })
         .then(response => {
-            myObjects.push(...response.data.results)
+            objects.push(...response.data.results)
         })
         .catch(error => {
             if (error.response.status === 401) {    // 401 Unauthorized: token expired!
@@ -56,24 +56,32 @@ const getMyObjects = (query, token) => {
 }
 
 // subscribe to auth store to get userId and accessToken
-// fetch organisations when these values are set
 const auth = useAuthStore()
-auth.$subscribe((mutation, state) => {
-    if (state.accessToken && state.userId) {
-        query.value = `type:"${props.type}" AND (metadata/createdBy:"${state.userId}" OR acl/writers/_:"${state.userId}")`
-        getMyObjects(query.value, state.accessToken)
+const keywords = ref(null)
+const query = ref(null)
+
+const search = () => {
+    objects.splice(0)
+    // two types of queries: search and my objects
+    if (!props.searchMode) {
+        const q = `type:"${props.type}" AND (metadata/createdBy:"${auth.userId}" OR acl/writers/_:"${auth.userId}")`
+        query.value = q
+        getObjects(q, auth.accessToken)
+    } else if (keywords.value) {
+        // split keywords by space
+        keywords.value = keywords.value.trim()
+        keywords.value = keywords.value.replace(/,|;/g, ' ') // replace commas and semicolons with space
+        keywords.value = keywords.value.replace(/\s+/g, ' ') // replace multiple spaces with single space
+        let words = keywords.value.split(' ')
+        // append * to each word
+        words = words.map(word => `"${word}*"`)
+        // join words with AND
+        const q = `type:"${props.type}" AND ${words.join(' AND ')}`
+        query.value = q
+        getObjects(q, auth.accessToken)
     } else {
         query.value = null
-        myObjects.splice(0)
     }
-})
-
-const refresh = () => {
-    // clear existing data
-    myObjects.splice(0)
-    // re-run query
-    query.value = `type:"${props.type}" AND (metadata/createdBy:"${auth.userId}" OR acl/writers/_:"${auth.userId}")`
-    getMyObjects(query.value, auth.accessToken)
 }
 
 onMounted(() => {
@@ -83,7 +91,7 @@ onMounted(() => {
         if (document.hasFocus()) {
             if (trigger) {
                 trigger = false
-                refresh()
+                search()
             }
         } else {
             trigger = true
@@ -98,12 +106,26 @@ const messages = useMessageStore()
 </script>
 
 <template>
-    <DataTable 
-        :value="myObjects" 
-        tableStyle="min-width: 25rem" 
-        stripedRows 
-        class="pb-2"
-    >
+    <div v-if="props.searchMode" >
+        <p class="mb-4 mt-2">
+            Search for one or more keywords in the descriptions. The search is case-insensitive and
+            searches for exact matches. A keyword can be the (first) part of a word. If you supply multiple keywords,
+            all of them must be present in the description.
+        </p>
+        <p class="mb-4">
+            You do not necessarily have write-access to the descriptions.
+        </p>
+        <div class="flex flex-row">
+            <div class="xl:basis-1/4 md:basis-1/2 basis-full my-4">
+                <InputGroup>
+                    <InputText v-model="keywords" placeholder="Keywords (space separated)" />
+                    <Button icon="pi pi-search" @click="search" />
+                </InputGroup>
+            </div>
+        </div>
+    </div>
+
+    <DataTable :value="objects" tableStyle="min-width: 25rem" stripedRows class="pb-2">
         <Column field="id" header="Handle">
             <template #body="{ data }">
                 <a :href="`${cordraBaseUrl}/#objects/${data.id}`" target="_blank">
@@ -116,11 +138,16 @@ const messages = useMessageStore()
     </DataTable>
 
     <p>
-        <a href="#" @click="refresh" class="mr-4 text-xs">
+        <a href="#" @click="search" class="mr-4 text-xs">
             <span class="pi pi-refresh" />
             Refresh
         </a>
-        <a :href="`${cordraBaseUrl}/#objects/?query=${query}`" target="_blank" class="mr-4 text-xs">
+        <a 
+            v-if="query"
+            :href="`${cordraBaseUrl}/#objects/?query=${query}`" 
+            target="_blank" 
+            class="mr-4 text-xs"
+        >
             <span class="pi pi-external-link" />
             Show this query directly in {{cordraBaseUrl}}
         </a>
