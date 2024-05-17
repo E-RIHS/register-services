@@ -136,7 +136,8 @@ onMounted(() => {
 </script>
 
 <template>
-    <Button v-if="!auth.accessToken" @click="openOrcidAuth" label="Log in with ORCID id" raised></Button>
+    <Button v-if="!auth.accessToken" @click="openOrcidAuth" label="Log in with ORCID id" class="hidden md:block"/>
+    <Button v-if="!auth.accessToken" @click="openOrcidAuth" icon="pi pi-sign-in" rounded class="md:hidden"/>
 
     <div v-else>
         <span class="mr-2 inline-block align-[10px]">{{ auth.username }}</span>
