@@ -20,9 +20,9 @@ const props = defineProps({
 const objects = reactive([])
 
 const getObjects = () => {
-    console.log("GET: " + query)
     const type = props.type.toLowerCase()
     const url = `${githubBaseUrl}/${type}`
+    console.log("GET: " + `${githubBaseUrl}/${type}`)
     axios.get(url)
         .then(response => {
             console.log(response.data)
