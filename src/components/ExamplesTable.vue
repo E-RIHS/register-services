@@ -48,7 +48,7 @@ onMounted(() => {
 <template>
 
     <p class="mb-4 mt-2">
-        Below is a selection of {{ prop.type.toLowerCase() }} descriptions that were created earlier, and that might be useful as examples.
+        Below is a selection of {{ props.type.toLowerCase() }} descriptions that were created earlier, and that might be useful as examples.
     </p>
     
     <DataTable :value="objects" tableStyle="min-width: 25rem" stripedRows class="pb-2">
