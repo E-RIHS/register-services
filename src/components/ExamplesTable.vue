@@ -26,6 +26,7 @@ const getObjects = () => {
     axios.get(url)
         .then(response => {
             console.log(response.data)
+            objects.splice(0, objects.length)
             objects.push(...response.data)
         })
         .catch(error => {
