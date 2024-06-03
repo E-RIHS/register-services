@@ -25,7 +25,6 @@ const getObjects = () => {
     console.log("GET: " + `${githubBaseUrl}/${type}.json`)
     axios.get(url)
         .then(response => {
-            console.log(response.data)
             objects.splice(0, objects.length)
             objects.push(...response.data)
         })
