@@ -88,6 +88,9 @@ const openLink = () => {
             <TabPanel header="Search people">
                 <MyObjectsTable type="Person" :columns="columns" search-mode />
             </TabPanel>
+            <TabPanel header="Examples">
+                <ExamplesTable type="Person" />
+            </TabPanel>
         </TabView>
 
         <Dialog 

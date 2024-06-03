@@ -4,7 +4,7 @@ const cordraBaseUrl = import.meta.env.VITE_CORDRA_BASE_URL
 const githubBaseUrl = import.meta.env.VITE_GITHUB_EXAMPLES_BASE_URL
 
 import axios from 'axios'
-import { ref, reactive, onMounted } from 'vue'
+import { reactive, onMounted } from 'vue'
 import { useToast} from 'primevue/usetoast'
 
 
@@ -46,6 +46,10 @@ onMounted(() => {
 </script>
 
 <template>
+
+    <p class="mb-4 mt-2">
+        Below is a selection of {{ prop.type.toLowerCase() }} descriptions that were created earlier, and that might be useful as examples.
+    </p>
     
     <DataTable :value="objects" tableStyle="min-width: 25rem" stripedRows class="pb-2">
         <Column field="id" header="Handle">
@@ -61,7 +65,7 @@ onMounted(() => {
     </DataTable>
 
     <p>
-        <a href="#" @click="search" class="mr-4 text-xs">
+        <a href="#" @click="getObjects" class="mr-4 text-xs">
             <span class="pi pi-refresh" />
             Refresh
         </a>

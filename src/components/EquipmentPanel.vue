@@ -94,6 +94,9 @@ const openLink = () => {
             <TabPanel header="Search equipment">
                 <MyObjectsTable type="Equipment" :columns="columns" search-mode />
             </TabPanel>
+            <TabPanel header="Examples">
+                <ExamplesTable type="Equipment" />
+            </TabPanel>
         </TabView>
 
         <Dialog 

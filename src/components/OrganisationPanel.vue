@@ -77,6 +77,9 @@ const openLink = () => {
         <TabPanel header="Search organisations">
             <MyObjectsTable type="Organisation" :columns="columns" search-mode />
         </TabPanel>
+        <TabPanel header="Examples">
+            <ExamplesTable type="Organisation" />
+        </TabPanel>
     </TabView>
 
     <Dialog v-model:visible="showDialog" modal header="The E-RIHS Knowledge Base" :style="{ width: '35rem' }">
