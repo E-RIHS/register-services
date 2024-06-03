@@ -77,6 +77,12 @@ const openLink = () => {
             <TabPanel header="Search services">
                 <MyObjectsTable type="Service" :columns="columns" search-mode />
             </TabPanel>
+            <TabPanel header="Examples">
+                <p class="mb-4 mt-2">
+                    Below is a selection of service descriptions that were created earlier, and that might be useful as examples.
+                </p>
+                <ExamplesTable type="Service" />
+            </TabPanel>
         </TabView>
 
         <Dialog 
