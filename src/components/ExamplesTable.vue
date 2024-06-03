@@ -21,8 +21,8 @@ const objects = reactive([])
 
 const getObjects = () => {
     const type = props.type.toLowerCase()
-    const url = `${githubBaseUrl}/${type}`
-    console.log("GET: " + `${githubBaseUrl}/${type}`)
+    const url = `${githubBaseUrl}/${type}.json`
+    console.log("GET: " + `${githubBaseUrl}/${type}.json`)
     axios.get(url)
         .then(response => {
             console.log(response.data)
