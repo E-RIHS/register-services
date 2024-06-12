@@ -39,30 +39,30 @@ const openLink = () => {
     </h2>
 
     <p class="mb-4">
-        During the registration process, your organisation will be created by the administrators if does not already
-        exist.
-        It will be associated with your account and you will be able to manage it.
-        However, newly created organisations will only be minimally populated with information. Please update the
-        organisation details as soon as possible.
+        The primary Organisation for the registered user will have been created as part of the initial registration process, but this should be checked and enhanced as needed. Additional organisations may need to be added depending on your service and team members.
     </p>
 
     <p class="mb-4">
-        You can be associated with multiple organisations. If the other organisations you are associated with are not
-        listed here, you can check if those organisations exist in the system.
-        If they do, you probably won't have the necessary permissions to edit them. In the next step, however, you will
-        be able to link this organisation as an affiliation in your person details.
+        You can be associated with multiple organisations. If the other organisations you are associated with are not listed here, you can check if those organisations exist in the system. If they do, you probably won't have the necessary permissions to edit them. In the next step, however, you will be able to link this organisation as an affiliation in your person details.
     </p>
 
     <p class="mb-4">
-        Organisations can be linked hierarchically. Examples are "CNR" and "CNR-ISTI", or "FORTH" and "FORTH-ICS". If a
-        parent organisation is not listed, you can create it here.
-        Within the "child" organisation, you can link the parent organisation(s).
+        When organisations which are part of larger organisations users may need to define the relevant parent or parents as well. Examples are "CNR" and "CNR-ISTI", or "FORTH" and "FORTH-ICS". When organisations which are part of larger organisations users may need to define the relevant parent or parents as well. Within the "child" organisation, you can link the parent organisation(s).
     </p>
 
     <p class="mb-4">
-        In the external PIDs (persistent identifiers) section, you can link the organisation to any existing external identifiers.
-        It is strongly recommended to include at least the "ROR" and "Wikidata" records (as URLs) for your organisation.
+        When creating a new organisation, you will be asked to provide the following information:
     </p>
+
+    <ul class="list-disc ml-6 mb-4">
+        <li>Organisation <strong>Acronym</strong> and <strong>Name</strong></li>
+        <li>Any existing <strong>external persistent identifiers</strong>. It is recommended that if there is a <a href="https://ror.org/" target="_blank" class="underline">ROR</a> or <a href="https://www.wikidata.org/" target="_blank" class="underline">Wikidata</a> entry for your organisation then these should be provided to link in additional data, such as locations. External references should be provided as URLs.</li>
+        <li>Relevant <strong>contact details</strong> and <strong>website</strong> links</li>
+        <li>Consider the <strong>research disciplines</strong> covered by the Organisation - at least one is required - there is a big drop down list but you can also see the current full list <a href="https://hdl.handle.net/21.11158/0002-9dc3-7d05-b211?urlappend=%26simple" target="_blank" class="underline">here</a></li>
+        <li>If the organisation needs to be referenced in a particular form, such as EU project requiring a grant number to be included, you will need to include this information.</li>
+        <li>Finally you will be asked for some dates relating to when the organisation started working in this field and when it began to work with the E-RIHS community.</li>
+        <li>A short bio is also useful.</li>
+    </ul>
 
     <p class="my-6">
         <Button v-if="shownDialogBefore" label="Create new organisation" icon="pi pi-file-edit" @click="openLink" />
