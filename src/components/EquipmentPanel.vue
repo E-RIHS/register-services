@@ -48,18 +48,30 @@ const openLink = () => {
         </p>
 
         <p class="mb-4">
-            In the this step and the next, you can create descriptions of the equipment(s) that you use in your service.
-            An equipment is a physical and particular device in your lab, defined by a name, a manufacturer and a model. 
-            It should not be mistaken with the concept of a "technique", which is a more abstract concept that can be 
-            implemented by multiple equipments, and which will be selected in the method and service descriptions.
+            In the this step and the next, you can create descriptions of the equipment(s) that you use in your service. An equipment is a physical and particular device in your lab, defined by a name, a manufacturer and a model. It should not be mistaken with the concept of a "technique", which is a more abstract concept that can be implemented by multiple equipments, and which will be selected in the method and service descriptions.
         </p>
 
-        <p  class="mb-4">
-            Similarly as for software, equipment can be linked to each other: a piece of equipment can consist of disctinctive components.
-            This is optional, but can be useful to describe the equipment and its different components in more detail. An example is given in 
-            the previous step. If you choose to describe the equipment and its components individually, the best approach is start with the
-            individual software and equipment component descriptions, and building up towards the combined/main equipment description.
+        <p class="mb-1">
+            Software and equipment are collectively called "tools". The set-up of tools offered in a service can range from simple or complex. A simple setup involves a simple software or equipment offered that can be directly described here. In case of more complex setups, there are two approaches that can be used: 
         </p>
+
+        <ul class="list-disc ml-6 mb-4">
+            <li>Describing “main” tools and "components". This can be a combination of software and equipment, and can be linked to individual software and equipment descriptions. As an example, a scanning electron microscope is an equipment that can be equiped with multiple detectors. Each detector, especially those from a different manufacturer can be considered as a separate equipment. Both the microscope and the detectors can be linked to software that is used to control them, and your lab might combine these proprietary software with open-source software for data analysis. The best approach is start with discription of the the individual software and equipment components, and building up towards the combined/main tool description.</li>
+            <li>Describing individual, stand-alone software and equipment that are mentioned in the method description (see next <em>7 - Methods</em>).</li>
+        </ul>
+
+        <p class="mb-1">
+            Equipment will need to have the following information provided:
+        </p>
+
+        <ul class="list-disc ml-6 mb-4">
+            <li>A unique <strong>title</strong> and a <strong>description</strong>. The title should relate to your own setup rather than a simple model name. A good approach is to start with the acronym of your organisation, such as “KIK-IRPA Raman 785/532 No1”</li>
+            <li>You will need to enter the relevant general <strong>data output types</strong>, if applicable. The dropboxes give a number of options, but you can add your own or adjust an existing term if required. At this stage the only details, within the equipment description, covering the output data, used by the equipment, is the general class or type, such as “2d dataset” or “RGB  image”. Detailed information relating to formats, file sizes etc. can all be added later in relation to a Method statement or as part of a Data Management Plan</li>
+            <li>You will also need relevant <strong>Manufacturer</strong> details, <strong>model number</strong>, <strong>serial number</strong> and <strong>calibration date</strong>.</li>
+            <li>You will also be asked to select a <strong>working distance range</strong> and indicate the possible <strong>impact</strong> the equipment might have on an object or sample.</li>
+            <li>Details of possible <strong>acquisition or target areas</strong> are also required. The dropbox gives a number of options, but you can add your own or adjust an existing term if required.</li>
+            <li>It is also very useful to include <strong>relevant links</strong> to documentation or equipment websites.</li>
+        </ul>
 
         <p class="my-6">
             <Button 
