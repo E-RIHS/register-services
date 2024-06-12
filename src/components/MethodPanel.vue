@@ -34,37 +34,41 @@ const openLink = () => {
 </script>
 
 <template>
-
         <h2 class="py-6 text-4xl font-bold">
             Methods
         </h2>
 
         <p class="mb-4">
-            In this step you can manage the default methods that describe how you will apply the software and equipment
-            in your service. A service can have multiple methods.
+            In this step you can manage the standard Methods (or standard protocols) that describe how you will apply techniques, equipment and software in a service. It does not intend to describe the specific approach for a given experiment or piece of analysis; this will be done in the documentation of an access visit. A method is a detailed description of the steps that are taken to perform a specific analysis or experiment
+            in a service. A service can have multiple methods. 
         </p>
 
         <p class="mb-4">
-            A default method is the general approach or workflow that you will use to answer a research question.
-            A method should be given a distinct title, which preferably starts with the acronym of the organisation that offers the service,
-            followed a short description of the method. If you have distinct methods for different materials that can be analysed, it could be
-            useful to add the material. Optionally, the title can also contain a version number or a year, which allows you to create updated methods.
-            The main purpose of the title, is to allow you to easily identify the method in the list of methods.
-            Examples of titles are:
+            Also please note, a Method can range from a simple text description of the usual activities within an ARCHLAB service to a detailed set of key parameters needed within complex systems used within MOLAB or FIXLAB. A detailed textual description of the steps carried out within a Method can be directly included in the form or referenced as an external document as needed.
+        </p>
+
+        <p class="mb-1">
+            The description of a standard method will need to have the following information provided:
         </p>
 
         <ul class="list-disc ml-6 mb-4">
-            <li>NG Lux Allowance Method 2024</li>
-            <li>KIK-IRPA SEM-EDS on cross sections of paint samples v1</li>
-            <li>KIK-IRPA Archival research</li>
+            <li>
+                A unique <strong>title</strong>, which should relate to your own Method rather than a general name. A good approach will be to start with the acronym of your organisation followed by a short descriptive phrase and potentially a date or version number. Some examples:
+                <ul class="list-disc ml-6 mb-4">
+                    <li><em>NG Lux Allowance Method 2024</em></li>
+                    <li><em>KIK-IRPA Raman analysis of paint cross sections v1</em></li>
+                    <li><em>KIK-IRPA Archival research</em></li>
+                </ul>
+            </li>
+            <li>Alternative shorter <strong>acronyms</strong> can also be entered, such as “KIK-IRPA Raman 2024”</li>
+            <li>The relevant <strong>technique</strong>. This can be selected from a big controlled list (<a href="https://hdl.handle.net/21.11158/0002-d6f1-f86f-d248?urlappend=%26simple" target="_blank" class="underline">link</a>) but “<em>other</em>” more specialised techniques can also be defined.</li>
+            <li>A <strong>version number</strong> for the method; this can be a simple number, more complex semantic versioning, or even just the year the method was created.</li>
+            <li><strong>Creation date</strong></li>
+            <li>Relevant <strong>author details</strong>; this will need to be a referenced person or organisation already in the E-RIHS Knowledge base.</li>
+            <li>The related <strong>tools</strong> (software or equipment previously registered in the E-RIHS knowledge base) should be listed along with their role within the method.</li>
+            <li>A textual description of the Method can be added as free text or linked as an existing published document.</li>
+            <li>A list of <strong>key parameters</strong> can then be added, each one will have value, unit, and type. They can also be linked to specific (previously registered) tools if a method is related to a complex multi-tool setup. The parameter type and unit dropboxes give a number of options, but you can add your own or adjust an existing term if required. The purpose of this list of parameters is to define the key terms needed for data interpretation and or to aid future searches for relevant data sets. It does not need to be an exhaustive list of every possible parameter used within a system.</li>
         </ul>
-
-        <p class="mb-4">
-            A default method gives a potential user of the service an idea of how the service is performed. 
-            You can describe parameters and instrumental settings in the default method, but you can also refer to a more detailed method description 
-            (in either a text box or an external document). The protocol and parameters described in the default method are not written in stone. During
-            an access visit, you can evidently deviate from the default method in order to better answer the research questions.
-        </p>
 
         <p class="my-6">
             <Button 
