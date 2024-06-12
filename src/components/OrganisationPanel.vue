@@ -55,9 +55,9 @@ const openLink = () => {
 
     <ul class="list-disc ml-6 mb-4">
         <li>Organisation <strong>Acronym</strong> and <strong>Name</strong></li>
-        <li>Any existing <strong>external persistent identifiers</strong>. It is recommended that if there is a <a href="https://ror.org/" target="_blank" class="underline">ROR</a> or <a href="https://www.wikidata.org/" target="_blank" class="underline">Wikidata</a> entry for your organisation then these should be provided to link in additional data, such as locations. External references should be provided as URLs.</li>
+        <li>Any existing <strong>external persistent identifiers</strong>. It is recommended that if there is a <a href="https://ror.org/" target="_blank" class="underline">ROR<span class="pi pi-external-link ml-1 mr-1" /></a> or <a href="https://www.wikidata.org/" target="_blank" class="underline">Wikidata<span class="pi pi-external-link ml-1 mr-1" /></a> entry for your organisation then these should be provided to link in additional data, such as locations. External references should be provided as URLs.</li>
         <li>Relevant <strong>contact details</strong> and <strong>website</strong> links</li>
-        <li>Consider the <strong>research disciplines</strong> covered by the Organisation - at least one is required - there is a big drop down list but you can also see the current full list <a href="https://hdl.handle.net/21.11158/0002-9dc3-7d05-b211?urlappend=%26simple" target="_blank" class="underline">here</a></li>
+        <li>Consider the <strong>research disciplines</strong> covered by the Organisation - at least one is required - there is a big drop down list but you can also see the current full list <a href="https://hdl.handle.net/21.11158/0002-9dc3-7d05-b211?urlappend=%26simple" target="_blank" class="underline">here<span class="pi pi-external-link ml-1 mr-1" /></a></li>
         <li>If the organisation needs to be referenced in a particular form, such as EU project requiring a grant number to be included, you can include this information.</li>
         <li>You will be asked for some dates relating to when the organisation started working in this field and when it began to work with the E-RIHS community.</li>
         <li>A short <strong>bio</strong> is also useful.</li>

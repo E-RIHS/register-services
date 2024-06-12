@@ -61,7 +61,7 @@ const openLink = () => {
                 </ul>
             </li>
             <li>Alternative shorter <strong>acronyms</strong> can also be entered, such as “KIK-IRPA Raman 2024”</li>
-            <li>The relevant <strong>technique</strong>. This can be selected from a big controlled list (<a href="https://hdl.handle.net/21.11158/0002-d6f1-f86f-d248?urlappend=%26simple" target="_blank" class="underline">link</a>) but “<em>other</em>” more specialised techniques can also be defined.</li>
+            <li>The relevant <strong>technique</strong>. This can be selected from a big controlled list (<a href="https://hdl.handle.net/21.11158/0002-d6f1-f86f-d248?urlappend=%26simple" target="_blank" class="underline">link<span class="pi pi-external-link ml-1 mr-1" /></a>) but “<em>other</em>” more specialised techniques can also be defined.</li>
             <li>A <strong>version number</strong> for the method; this can be a simple number, more complex semantic versioning, or even just the year the method was created.</li>
             <li><strong>Creation date</strong></li>
             <li>Relevant <strong>author details</strong>; this will need to be a referenced person or organisation already in the E-RIHS Knowledge base.</li>

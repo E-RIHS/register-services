@@ -59,10 +59,10 @@ const openLink = () => {
 
         <ul class="list-disc ml-6 mb-4">
             <li>The person's <strong>Title</strong> and <strong>Name</strong></li>
-            <li>Any existing <strong>external persistent identifiers</strong>. Providing the <a href="https://orcid.org/" target="_blank" class="underline">ORCID</a> entry for the person is higly recommended. PIDs should be formatted as URLs</li>
+            <li>Any existing <strong>external persistent identifiers</strong>. Providing the <a href="https://orcid.org/" target="_blank" class="underline">ORCID<span class="pi pi-external-link ml-1 mr-1" /></a> entry for the person is higly recommended. PIDs should be formatted as URLs</li>
             <li>Their <strong>affiliations</strong> with any defined Organisations and the date they started working with them.</li>
             <li>Relevant <strong>contact details</strong> and <strong>website</strong> links</li>
-            <li>Consider the <strong>research disciplines</strong> covered by the Person - there is a big drop down list but you can also see the current full list <a href="https://hdl.handle.net/21.11158/0002-9dc3-7d05-b211?urlappend=%26simple" target="_blank" class="underline">here</a>
+            <li>Consider the <strong>research disciplines</strong> covered by the Person - there is a big drop down list but you can also see the current full list <a href="https://hdl.handle.net/21.11158/0002-9dc3-7d05-b211?urlappend=%26simple" target="_blank" class="underline">here<span class="pi pi-external-link ml-1 mr-1" /></a>
             </li>
             <li>The date they started working in this field.</li>
             <li>A short <strong>bio</strong> is also useful.</li>

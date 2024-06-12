@@ -43,7 +43,7 @@ import 'primeicons/primeicons.css'
 
         <p class="mb-4">
             In addition to the key metadata directly describing an actual Service, the full definition of an E-RIHS Service is a combination of the individual definitions of a set of related entities (People, Tools, Techniques, etc), 
-            see model diagram, that all need to be defined first in a specific order. 
+            see model diagram, that all need to be defined first in a specific order. More information on the process of defining services and an overview of which information you should keep at hand during the process, can be found <a href="https://github.com/E-RIHS/help/tree/main/defining-services" target="_blank" class="underline">here<span class="pi pi-external-link ml-1 mr-1" /></a>.
         </p>
         <img src="https://data.e-rihs.io/objects/design?payload=defining_services.png" alt="Schematic view of all definitions around the concept 'Service'" class="mb-4">
 
