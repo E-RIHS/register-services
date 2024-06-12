@@ -60,7 +60,7 @@ const openLink = () => {
         <li>Relevant <strong>contact details</strong> and <strong>website</strong> links</li>
         <li>Consider the <strong>research disciplines</strong> covered by the Organisation - at least one is required - there is a big drop down list but you can also see the current full list <a href="https://hdl.handle.net/21.11158/0002-9dc3-7d05-b211?urlappend=%26simple" target="_blank" class="underline">here</a></li>
         <li>If the organisation needs to be referenced in a particular form, such as EU project requiring a grant number to be included, you will need to include this information.</li>
-        <li>Finally you will be asked for some dates relating to when the organisation started working in this field and when it began to work with the E-RIHS community.</li>
+        <li>You will be asked for some dates relating to when the organisation started working in this field and when it began to work with the E-RIHS community.</li>
         <li>A short bio is also useful.</li>
     </ul>
 
