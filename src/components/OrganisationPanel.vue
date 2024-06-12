@@ -59,6 +59,11 @@ const openLink = () => {
         Within the "child" organisation, you can link the parent organisation(s).
     </p>
 
+    <p class="mb-4">
+        In the external PIDs (persistent identifiers) section, you can link the organisation to any existing external identifiers.
+        It is strongly recommended to include at least the "ROR" and "Wikidata" records (as URLs) for your organisation.
+    </p>
+
     <p class="my-6">
         <Button v-if="shownDialogBefore" label="Create new organisation" icon="pi pi-file-edit" @click="openLink" />
         <Button v-else label="Create new organisation" icon="pi pi-file-edit" @click="toggleDialog(false)" />

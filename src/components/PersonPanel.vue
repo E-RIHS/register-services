@@ -44,6 +44,11 @@ const openLink = () => {
             However, newly created persons will only be minimally populated with information. Please update your own details as soon as possible.
         </p>
 
+        <p class="mb-4">
+            In the external PIDs (persistent identifiers) section, you can link the person to any existing external identifiers.
+            It is strongly recommended to include at least the "ORCID iD" (as URL).
+        </p>
+
         <p  class="mb-4">
             You can be associated with multiple organisations. This is done from within the person details; if you are not yet affiliated with an organisation you are working for, you can add it here.
             In the previous step, the concept of parent organisations was introduced. If you are not directly employed by the parent organisation, it is preferable not to add an affiliation to your person details.
