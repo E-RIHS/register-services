@@ -33,7 +33,6 @@ const openLink = () => {
 </script>
 
 <template>
-
     <h2 class="py-6 text-4xl font-bold">
         Organisations
     </h2>
@@ -50,7 +49,7 @@ const openLink = () => {
         When organisations which are part of larger organisations users may need to define the relevant parent or parents as well. Examples are "CNR" and "CNR-ISTI", or "FORTH" and "FORTH-ICS". When organisations which are part of larger organisations users may need to define the relevant parent or parents as well. Within the "child" organisation, you can link the parent organisation(s).
     </p>
 
-    <p class="mb-1">
+    <p class="mb-2">
         When creating a new organisation, you will be asked to provide the following information:
     </p>
 

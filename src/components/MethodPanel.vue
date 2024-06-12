@@ -47,14 +47,14 @@ const openLink = () => {
             Also please note, a Method can range from a simple text description of the usual activities within an ARCHLAB service to a detailed set of key parameters needed within complex systems used within MOLAB or FIXLAB. A detailed textual description of the steps carried out within a Method can be directly included in the form or referenced as an external document as needed.
         </p>
 
-        <p class="mb-1">
+        <p class="mb-2">
             The description of a standard method will need to have the following information provided:
         </p>
 
         <ul class="list-disc ml-6 mb-4">
             <li>
                 A unique <strong>title</strong>, which should relate to your own Method rather than a general name. A good approach will be to start with the acronym of your organisation followed by a short descriptive phrase and potentially a date or version number. Some examples:
-                <ul class="list-disc ml-6 mb-4">
+                <ul class="list-disc ml-6">
                     <li><em>NG Lux Allowance Method 2024</em></li>
                     <li><em>KIK-IRPA Raman analysis of paint cross sections v1</em></li>
                     <li><em>KIK-IRPA Archival research</em></li>

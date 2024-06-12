@@ -53,7 +53,7 @@ const openLink = () => {
             They can be linked with your account if you have added them yourself previously (and as such, they will be listed below), but they can be added by other people (or by themself) as well. 
         </p>
 
-        <p  class="mb-1">
+        <p  class="mb-2">
             When creating a new person, you will be asked to provide the following information:
         </p>
 

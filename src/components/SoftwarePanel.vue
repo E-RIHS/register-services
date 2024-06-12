@@ -51,7 +51,7 @@ const openLink = () => {
             In the this step and the next, you can create descriptions of software and equipment that you use in your service. Only the key pieces of equipment and software for your services need to be defined.
         </p>
 
-        <p class="mb-1">
+        <p class="mb-2">
             Software and equipment are collectively called "tools". The set-up of tools offered in a service can range from simple or complex. A simple setup involves a simple software or equipment offered that can be directly described here. In case of more complex setups, there are two approaches that can be used: 
         </p>
 
@@ -60,7 +60,7 @@ const openLink = () => {
             <li>Describing individual, stand-alone software and equipment that are mentioned in the method description (see next <em>7 - Methods</em>).</li>
         </ul>
 
-        <p class="mb-1">
+        <p class="mb-2">
             Software will need to have the following information provided:
         </p>
 
